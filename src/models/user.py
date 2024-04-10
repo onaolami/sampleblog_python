@@ -7,4 +7,4 @@ class User(Base):
     id = Column(Integer,primary_key=True, index=True)
     hashed_password = Column(String(255)) 
     name = Column(String(255))
-    email = Column(String(255))
+    email = Column(String(255),unique=True)

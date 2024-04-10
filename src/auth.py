@@ -68,15 +68,17 @@ db_dependency = Annotated[Session, Depends(get_db)]
 
 @router.post("/signup", status_code=status.HTTP_201_CREATED)
 async def create_user(request: CreateUserRequest, db: db_dependency):
-   print("\n\nPassword:\n\n")
-   print(request)
    create_user_model = User(
       name=request.name,
       email=request.email,
       hashed_password=bcrypt_context.hash(request.password)
    )
-   db.add(create_user_model)
-   db.commit()
+   try:
+      db.add(create_user_model)
+      db.commit()
+   except:
+      raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                          detail='Email is already used') 
 
 
 @router.post("/login", response_model=Token)
