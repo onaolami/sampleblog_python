@@ -17,11 +17,11 @@ This is a Sample Blog App that contains routes for a typical blog:
 
 ### How to Run the App
 
-First of all, check the .example.env and create a .env for the keys you'll find there.
+- First of all, check the .example.env file, and create a .env for the keys you'll find there.
 
-Then create a virtual environment and install the necessary dependencies from the requirements.txt
+- Then create a virtual environment and install the necessary dependencies from the requirements.txt
 
-Now, at the root level of this project, run the following command:
+- Now, at the root level of this project, run the following command:
 
 ```bash
 uvicorn src.main:app --reload
