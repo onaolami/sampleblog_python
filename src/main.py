@@ -45,19 +45,6 @@ def get_db():
 
 db_dependency = Annotated[Session,Depends(get_db)]
 
-#USER
-#CREATE USER
-
-
-
-
-
-
-#CREATE 
-#GET
-#GETALL
-#SEARCH
-#DELETE
 
 # CREATE POST
 @app.post("/post/",status_code=status.HTTP_201_CREATED)
@@ -105,12 +92,6 @@ async def delete_posts(post_id:int, db:db_dependency):
     db.delete(db_post)
     db.commit()
 
-
-#COMMENT
-#CREATE
-#GET ALL
-#DELETE
-    
 
 #CREATE COMMENTS
 @app.post("/comments/", status_code=status.HTTP_201_CREATED)
