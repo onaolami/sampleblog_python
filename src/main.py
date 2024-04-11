@@ -68,8 +68,6 @@ async def read_post(post_id: int, db:db_dependency):
 @app.get("/posts/", status_code=status.HTTP_200_OK)
 async def getall_post( db:db_dependency):
     post = db.query(Post).all()
-    if post is None:
-       return[]
       
     return post
 
@@ -105,9 +103,7 @@ async def create_comments(comment:CommentBase, db:db_dependency):
 @app.get("/comments/", status_code=status.HTTP_200_OK)
 async def getall_comments(db:db_dependency):
     comment = db.query(Comment).all()
-    if comment is None:
-        return []
-      
+     
     return comment
 
 
