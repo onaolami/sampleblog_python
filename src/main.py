@@ -82,7 +82,8 @@ async def read_post(post_id: int, db:db_dependency):
 async def getall_post( db:db_dependency):
     post = db.query(Post).all()
     if post is None:
-      raise HTTPException(status_code=404, detail="Post was not found")
+       return[]
+      
     return post
 
 
@@ -96,7 +97,7 @@ async def search_posts(title: str,db:db_dependency):
 
 
 #DELETE POST
-@app.delete("/posts/{post_id}", status_code=status.HTTP_200_OK)
+@app.delete("/posts/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_posts(post_id:int, db:db_dependency):
     db_post = db.query(Post).filter(Post.id == post_id).first()
     if db_post is None:
@@ -124,12 +125,13 @@ async def create_comments(comment:CommentBase, db:db_dependency):
 async def getall_comments(db:db_dependency):
     comment = db.query(Comment).all()
     if comment is None:
-        HTTPException(status_code= 404, detail="Comment not found")
+        return []
+      
     return comment
 
 
 #DELETE COMMENTS
-@app.delete("/comment/{comment_id}",status_code=status.HTTP_200_OK)
+@app.delete("/comment/{comment_id}",status_code=status.HTTP_204_NO_CONTENT)
 async def delete_comments(comment_id:int, db:db_dependency):
     db_comment= db.query(Comment).filter(Comment.id == comment_id).first()
     if db_comment is None:
